@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Adicionado o -> favicon -->
+    <link
+      rel="shortcut icon"
+      href="assets/favicon-dinheiro.ico"
+      type="logo-favicon-icon"
+    />
+
+    <link rel="stylesheet" href="CSS/style.css" />
+
+    <title>DevClub - Conversor de Moedas</title>
+  </head>
+  <body>
+    <div class="box-img-fundo">
+      <img class="img-fundo" src="./assets/img-fundo.jpg" alt="plano-fundo" />
+      <div class="mascara-img"></div>
+    </div>
+
+    <img
+      class="logo-dinheiro"
+      src="./assets/logo-dinheiro.png"
+      alt="logo-dinheiro"
+    />
+
+    <main>
+      <label>
+        Converter <strong>de</strong>
+        <select class="currency-select1">
+          <option value="real-catch">R$ Real Brasileiro</option>
+          <!-- Adicionado o valor -> Dólar -->
+          <option value="dolar-catch">US$ Dólar americano</option>
+          <!-- Adicionado o valor -> Euro -->
+          <option value="euro-catch">€ Euro</option>
+        </select>
+      </label>
+
+      <label>
+        Converter <strong>para</strong>
+
+        <select class="currency-select">
+          <option value="dolar">US$ Dólar americano</option>
+          <option value="euro">€ Euro</option>
+          <!-- Adicionado -> o valor do Real -->
+          <option value="real">R$ Real Brasileiro</option>
+        </select>
+      </label>
+
+      <label>
+        Valor
+        <input class="enter-the-value" placeholder="Digite o Valor" />
+      </label>
+
+      <button class="convert-button">Converter</button>
+
+      <section>
+        <div class="currency-box">
+          <!-- Adicionado a class -> convert-img -->
+          <img class="convert-image" src="assets/real.png" alt="logo-real" />
+          <p class="currency">Real Brasileiro</p>
+          <p class="currency-convert">R$ 0,00</p>
+        </div>
+
+        <img class="img-box" src="assets/arrow.png" alt="logo-seta" />
+
+        <div class="currency-box">
+          <img class="currency-img" src="assets/dolar.png" alt="logo-dolar" />
+          <p class="currency" id="currency-name">Dólar americano</p>
+          <p class="currency-value">US$ 0.0</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; carlooss89</p>
+    </footer>
+  </body>
+  <script src="./JS/scripts.js"></script>
+</html>
