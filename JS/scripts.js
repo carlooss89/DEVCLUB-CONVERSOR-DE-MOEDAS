@@ -5,8 +5,8 @@ const currencySelect = document.querySelector(".currency-select");
 
 function convertValues() {
   const enterTheValue = document.querySelector(".enter-the-value").value;
-  const currencyConvert = document.querySelector(".currency-convert"); // Valor em Real
-  const currencyValue = document.querySelector(".currency-value"); // Dólar, Euro e Outras moedas
+  const currencyConvert = document.querySelector(".currency-convert"); // Valor em Real e Outras moedas
+  const currencyValue = document.querySelector(".currency-value"); // Valor em Dólar e Outras moedas
 
   const dolarToday = 5.2;
   const euroToday = 6.2;
@@ -37,78 +37,87 @@ function convertValues() {
     }).format(enterTheValue);
   }
 
-  // Continuar com a solução -------------------------------
-
-  if (currencySelect.value == "real") {
-    // Adicionado -> Se o select estiver selecionado o valor de real, entre aqui
+  // Início da função de comparação -> && - REAL
+  if (currencySelect1.value == "real-catch" && currencySelect.value == "real") {
     currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
     }).format(enterTheValue);
   }
 
-  if (currencySelect.value == "dolar") {
-    // Se o select estiver selecionado o valor de dolar, entre aqui
+  if (
+    currencySelect1.value == "real-catch" &&
+    currencySelect.value == "dolar"
+  ) {
     currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
     }).format(enterTheValue / dolarToday);
   }
 
-  if (currencySelect.value == "euro") {
-    // Se o select estiver selecionado o valor de euro, entre aqui
+  if (currencySelect1.value == "real-catch" && currencySelect.value == "euro") {
     currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
       style: "currency",
       currency: "EUR",
     }).format(enterTheValue / euroToday);
   }
-}
-// Fim da função -> function convertValues()
 
-// Início da função de comparação -> && - DOLAR
-if (currencySelect1.value == "dolar-catch" && currencySelect.value == "dolar") {
-  currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(enterTheValue);
-}
+  // Início da função de comparação -> && - DOLAR
+  if (
+    currencySelect1.value == "dolar-catch" &&
+    currencySelect.value == "dolar"
+  ) {
+    currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(enterTheValue);
+  }
 
-if (currencySelect1.value == "dolar-catch" && currencySelect.value == "real") {
-  currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(enterTheValue / dolarToday);
-}
+  if (
+    currencySelect1.value == "dolar-catch" &&
+    currencySelect.value == "euro"
+  ) {
+    currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency: "EUR",
+    }).format(enterTheValue / euroToday);
+  }
 
-if (currencySelect1.value == "dolar-catch" && currencySelect.value == "euro") {
-  currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR",
-  }).format(enterTheValue / dolarToday);
-}
+  if (
+    currencySelect1.value == "dolar-catch" &&
+    currencySelect.value == "real"
+  ) {
+    currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(enterTheValue / realToday);
+  }
 
-// Início da função de comparação -> && - EURO
-if (currencySelect1.value == "euro-catch" && currencySelect.value == "dolar") {
-  currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(enterTheValue / euroToday);
-}
+  // Início da função de comparação -> && - EURO
+  if (currencySelect1.value == "euro-catch" && currencySelect.value == "euro") {
+    currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency: "EUR",
+    }).format(enterTheValue);
+  }
 
-if (currencySelect1.value == "euro-catch" && currencySelect.value == "real") {
-  currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(enterTheValue / euroToday);
-}
+  if (currencySelect1.value == "euro-catch" && currencySelect.value == "real") {
+    currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(enterTheValue / realToday);
+  }
 
-if (currencySelect1.value == "euro-catch" && currencySelect.value == "euro") {
-  currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR",
-  }).format(enterTheValue / euroToday);
+  if (
+    currencySelect1.value == "euro-catch" &&
+    currencySelect.value == "dolar"
+  ) {
+    currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(enterTheValue / dolarToday);
+  }
 }
-
 // Fim da função de comparação -> &&
 
 function changeCurrency() {
