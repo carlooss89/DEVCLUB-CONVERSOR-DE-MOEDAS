@@ -4,12 +4,9 @@
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
     outline: none;
+    text-decoration: none;
 }
 
-/*body {
-    background-color: rgb(234, 209, 84);
-}
-*/
 .box-img-fundo {
     position: fixed;
     top: 0;
@@ -26,7 +23,7 @@
 
 .logo-dinheiro {
     display: block;
-    margin: 1px auto;
+    margin: 0 auto;
     width: 400px;
     filter: invert(100%);
     opacity: 80%;
@@ -96,10 +93,6 @@ section {
     filter: invert(25%);
     margin: 10px 0;
 }
-
-/* .arrow-img {
-    margin: 15px 0;
-} */
 
 .currency-box {
     display: flex;

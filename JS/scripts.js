@@ -1,127 +1,77 @@
+// Início da seleção de elementos
 const convertButton = document.querySelector(".convert-button");
-// Adicionado o -> currencySelect1
 const currencySelect1 = document.querySelector(".currency-select1");
 const currencySelect = document.querySelector(".currency-select");
 
 function convertValues() {
-  const enterTheValue = document.querySelector(".enter-the-value").value;
-  const currencyConvert = document.querySelector(".currency-convert"); // Valor em Real e Outras moedas
-  const currencyValue = document.querySelector(".currency-value"); // Valor em Dólar e Outras moedas
+  const enterTheValue = parseFloat(document.querySelector(".enter-the-value").value) || 0;
+  const currencyConvert = document.querySelector(".currency-convert");
+  const currencyValue = document.querySelector(".currency-value");
 
-  const dolarToday = 5.2;
-  const euroToday = 6.2;
-  // Adicionado o valor -> realToday
-  const realToday = 4.86;
+  const rates = {
+    "real-catch": { code: "BRL", locale: "pt-BR", rate: 1 },
+    "dolar-catch": { code: "USD", locale: "en-US", rate: 5.2 },
+    "euro-catch": { code: "EUR", locale: "de-DE", rate: 6.2 }
+  };
 
-  if (currencySelect1.value == "real-catch") {
-    // Adicionado -> Se o select1 estiver selecionado o valor do real-catch, entre aqui
-    currencyConvert.innerHTML = new Intl.NumberFormat("pt-BR", {
+  const realToday = 4.86; // Usado para conversão direta
+
+  // Função para formatar moeda
+  function formatCurrency(value, locale, code) { 
+    return new Intl.NumberFormat(locale, { 
       style: "currency",
-      currency: "BRL",
-    }).format(enterTheValue);
+      currency: code,
+    }).format(value);
   }
 
-  if (currencySelect1.value == "dolar-catch") {
-    // Adicionado -> Se o select1 estiver selecionado o valor do dolar-catch, entre aqui
-    currencyConvert.innerHTML = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(enterTheValue);
+  // Seleciona as moedas de origem e destino
+  const from = currencySelect1.value;
+  const to = currencySelect.value;
+
+  // Mostra o valor original na moeda de origem
+  if (rates[from]) {
+    currencyConvert.innerHTML = formatCurrency(enterTheValue, rates[from].locale, rates[from].code);
+  } else {
+    currencyConvert.innerHTML = "";
   }
 
-  if (currencySelect1.value == "euro-catch") {
-    // Adicionado -> Se o select1 estiver selecionado o valor do euro-catch, entre aqui
-    currencyConvert.innerHTML = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(enterTheValue);
-  }
+  // Matriz de conversão entre moedas
+  const conversionMatrix = {
+    "real-catch": {
+      "real": v => v,  // A seta =>: Significa "transforma em" ou "retorna".
+      "dolar": v => v / rates["dolar-catch"].rate, 
+      "euro": v => v / rates["euro-catch"].rate
+    },
+    "dolar-catch": {
+      "real": v => v / realToday, 
+      "dolar": v => v,
+      "euro": v => v / rates["euro-catch"].rate
+    },
+    "euro-catch": {
+      "real": v => v / realToday, 
+      "dolar": v => v / rates["dolar-catch"].rate,
+      "euro": v => v
+    }
+  };
 
-  // Início da função de comparação -> && - REAL
-  if (currencySelect1.value == "real-catch" && currencySelect.value == "real") {
-    currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(enterTheValue);
-  }
+  // Formatadores para cada moeda de destino
+  const formatters = { 
+    "real": (v) => formatCurrency(v, "pt-BR", "BRL"),
+    "dolar": (v) => formatCurrency(v, "en-US", "USD"),
+    "euro": (v) => formatCurrency(v, "de-DE", "EUR")
+  };
 
-  if (
-    currencySelect1.value == "real-catch" &&
-    currencySelect.value == "dolar"
-  ) {
-    currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(enterTheValue / dolarToday);
-  }
-
-  if (currencySelect1.value == "real-catch" && currencySelect.value == "euro") {
-    currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(enterTheValue / euroToday);
-  }
-
-  // Início da função de comparação -> && - DOLAR
-  if (
-    currencySelect1.value == "dolar-catch" &&
-    currencySelect.value == "dolar"
-  ) {
-    currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(enterTheValue);
-  }
-
-  if (
-    currencySelect1.value == "dolar-catch" &&
-    currencySelect.value == "euro"
-  ) {
-    currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(enterTheValue / euroToday);
-  }
-
-  if (
-    currencySelect1.value == "dolar-catch" &&
-    currencySelect.value == "real"
-  ) {
-    currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(enterTheValue / realToday);
-  }
-
-  // Início da função de comparação -> && - EURO
-  if (currencySelect1.value == "euro-catch" && currencySelect.value == "euro") {
-    currencyValue.innerHTML = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(enterTheValue);
-  }
-
-  if (currencySelect1.value == "euro-catch" && currencySelect.value == "real") {
-    currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(enterTheValue / realToday);
-  }
-
-  if (
-    currencySelect1.value == "euro-catch" &&
-    currencySelect.value == "dolar"
-  ) {
-    currencyValue.innerHTML = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(enterTheValue / dolarToday);
+  if (conversionMatrix[from]?.[to] && formatters[to]) { // Verifica se a conversão é possível
+    const converted = conversionMatrix[from][to](enterTheValue); // Converte o valor
+    currencyValue.innerHTML = formatters[to](converted); // Formata e exibe o valor convertido
+  } else {
+    currencyValue.innerHTML = ""; // Se a conversão não for possível, limpa o campo
   }
 }
 // Fim da função de comparação -> &&
 
-function changeCurrency() {
-  const currencyName = document.getElementById("currency-name");
+function changeCurrency() { // Função para mudar a moeda 
+  const currencyName = document.getElementById("currency-name"); 
   const currencyImg = document.querySelector(".currency-img");
 
   // Adicionado a -> img real
