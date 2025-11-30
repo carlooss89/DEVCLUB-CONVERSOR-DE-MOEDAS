@@ -18,67 +18,51 @@
 
     <link rel="stylesheet" href="CSS/style.css" />
 
+     <!-- Início do link Bootstrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <!-- Fim do link Bootstrap  -->
+
     <title> Conversor de Moedas </title>
+
   </head>
-  <body>
+
+  <body class="bg-dark text-white"> <div class="container mt-5"> <div class="card p-4 text-black"><h1 class="text-center mb-4"> Conversor de Moedas</h1> 
+
+    <label> Converter de: </label>
+    <select class="currency-select1 form-select mb-3">
+    <option value="BRL"> Real Brasileiro </option> 
+    <option value="USD"> Dólar Americano </option>
+    <option value="EUR"> Euro </option>
+    </select>
+
+    <label>Converter para:</label>
+            <select class="currency-select form-select mb-3">
+                <option value="USD">Dólar Americano</option>
+                <option value="BRL">Real Brasileiro</option>
+                <option value="EUR">Euro</option>
+            </select>
+
+            <label> Valor: </label> 
+            <input class="enter-the-value form-control mb-3" placeholder= "Digite um valor" type="number" />
+            <button class="convert-button btn btn-primary w-100 btn-lg" > Converter </button>
+
+            <div class="mt-4 txt-center"> 
+              <img src="./assets/real.png" alt="bandeira-Brasil" class="convert-image" width="50px">
+              <p class="currency-convert fs-5 fw-bold"> R$ 0,00 </p>
+
+              <img src="./assets/dolar.png" alt="bandeira-EUA" class="currency-img" width="50px">
+              <p id="currency-name" class="text-muted"> Dólar Americano</p>
+              
+            </div>
+            </div>
+    </div>
+
+
+
     <div class="box-img-fundo">
       <img class="img-fundo" src="./assets/img-fundo.jpg" alt="plano-fundo" />
       <div class="mascara-img"></div>
     </div>
-
-    <img
-      class="logo-dinheiro"
-      src="./assets/logo-dinheiro.png"
-      alt="logo-dinheiro"
-    />
-    
-    <main>
-      <label>
-        Converter <strong>de</strong>
-        <select class="currency-select1">
-          <option value="real-catch">R$ Real Brasileiro</option>
-          <!-- Adicionado o valor -> Dólar -->
-          <option value="dolar-catch">US$ Dólar americano</option>
-          <!-- Adicionado o valor -> Euro -->
-          <option value="euro-catch">€ Euro</option>
-        </select>
-      </label>
-
-      <label>
-        Converter <strong>para</strong>
-
-        <select class="currency-select">
-          <option value="dolar">US$ Dólar americano</option>
-          <option value="euro">€ Euro</option>
-          <!-- Adicionado -> o valor do Real -->
-          <option value="real">R$ Real Brasileiro</option>
-        </select>
-      </label>
-
-      <label>
-        Valor
-        <input class="enter-the-value" placeholder="Digite o Valor" />
-      </label>
-
-      <button class="convert-button">Converter</button>
-
-      <section>
-        <div class="currency-box">
-          <!-- Adicionado a class -> convert-img -->
-          <img class="convert-image" src="assets/real.png" alt="logo-real" />
-          <p class="currency">Real Brasileiro</p>
-          <p class="currency-convert">R$ 0,00</p>
-        </div>
-
-        <img class="img-box" src="assets/arrow.png" alt="logo-seta" />
-
-        <div class="currency-box">
-          <img class="currency-img" src="assets/dolar.png" alt="logo-dolar" />
-          <p class="currency" id="currency-name">Dólar americano</p>
-          <p class="currency-value">US$ 0.0</p>
-        </div>
-      </section>
-    </main>
 
     <footer>
       <p>&copy; carlooss89</p>
